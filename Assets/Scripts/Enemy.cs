@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         _currentHp -= damage;
-        Debug.Log($"적 체력 : {_currentHp}");
+        //Debug.Log($"적 체력 : {_currentHp}");
 
         if (_currentHp <= 0)
             Die();
