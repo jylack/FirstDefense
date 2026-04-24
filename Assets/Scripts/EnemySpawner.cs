@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        GameObject enemy = Instantiate(_enemyPrefab);
+        GameObject enemy = ObjectPool.Instance.GetEnemy();
         // WaveManager도 같이 전달
         enemy.GetComponent<Enemy>().Init(
             _waypointManager.GetWaypoints(),

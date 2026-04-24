@@ -61,13 +61,13 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.AddGold(_goldReward); // 골드 지급
         // WaveManager에게 적 사망 알림
         _waveManager.OnEnemyDied();
-        Destroy(gameObject);
+        ObjectPool.Instance.ReturnEnemy(gameObject);//풀에 반환
     }
 
     // 기지 도달 시 호출
     public void ReachBase()
     {
         _waveManager.OnEnemyDied();
-        Destroy(gameObject);
+        ObjectPool.Instance.ReturnEnemy(gameObject);//풀에 반환
     }
 }

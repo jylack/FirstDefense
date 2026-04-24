@@ -12,7 +12,7 @@ public class Base : MonoBehaviour
 
         // 기지 체력 감소
         GameManager.Instance.TakeDamage(_damage);
-        Debug.Log("으억");
+        //Debug.Log("으억");
         // 적 제거 (WaveManager에 사망 알림)
         enemy.ReachBase();
     }
