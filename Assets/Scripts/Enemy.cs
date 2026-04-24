@@ -63,4 +63,11 @@ public class Enemy : MonoBehaviour
         _waveManager.OnEnemyDied();
         Destroy(gameObject);
     }
+
+    // 기지 도달 시 호출
+    public void ReachBase()
+    {
+        _waveManager.OnEnemyDied();
+        Destroy(gameObject);
+    }
 }
