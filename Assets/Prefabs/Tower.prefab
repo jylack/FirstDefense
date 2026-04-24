@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2611350977394796928}
   - component: {fileID: 9063808164378448216}
-  - component: {fileID: 1255757846514045663}
   - component: {fileID: 1761259224047118185}
+  - component: {fileID: 1255757846514045663}
   m_Layer: 0
   m_Name: Tower
   m_TagString: Untagged
@@ -93,21 +93,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1255757846514045663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4329015422523455768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b5ad59beb50e5e42a0a243d4c20dc46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Tower
-  _range: 3
-  _damage: 10
-  _fireRate: 4
 --- !u!58 &1761259224047118185
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -144,3 +129,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &1255757846514045663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4329015422523455768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5ad59beb50e5e42a0a243d4c20dc46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower
+  _range: 3
+  _damage: 10
+  _fireRate: 4
