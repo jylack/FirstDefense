@@ -15,7 +15,7 @@ Unity 2D 기반 1인 개발 타워디펜스 게임입니다.
 ---
 
 ## 🔧 기술 스택
-- **Engine**: Unity 2022.3
+- **Engine**: Unity 6000.3.6f1
 - **Language**: C#
 - **Tools**: GitHub, Visual Studio
 
