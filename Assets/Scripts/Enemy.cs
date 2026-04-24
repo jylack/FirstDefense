@@ -1,18 +1,24 @@
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
+{          
     [SerializeField] private float _speed = 3f; // 이동 속도
     [SerializeField] private int _maxHp = 100; // 최대 체력
+    
+    private WaveManager _waveManager; // WaveManager 참조
+    
     private int _currentHp; // 현재 체력
     private Transform[] _waypoints; // 웨이포인트 배열
     private int _currentIndex = 0; // 현재 목표 웨이포인트 인덱스
 
+
     // 외부에서 웨이포인트 배열 받아 초기화
-    public void Init(Transform[] waypoints)
+    // Init 메서드에 WaveManager 추가
+    public void Init(Transform[] waypoints, WaveManager waveManager)
     {
         _waypoints = waypoints;
-        _currentHp = _maxHp; // 체력 초기화
+        _waveManager = waveManager;
+        _currentHp = _maxHp;
         transform.position = _waypoints[0].position;
     }
 
@@ -51,7 +57,8 @@ public class Enemy : MonoBehaviour
     // 적 사망 처리
     private void Die()
     {
-        Debug.Log("적 사망");
+        // WaveManager에게 적 사망 알림
+        _waveManager.OnEnemyDied();
         Destroy(gameObject);
     }
 }
