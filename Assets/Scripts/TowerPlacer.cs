@@ -5,6 +5,7 @@ public class TowerPlacer : MonoBehaviour
 {
     [SerializeField] private GameObject _towerPrefab;  // 배치할 타워 프리팹
     private bool _isPlacing = false;                   // 현재 배치 모드인지
+    private GameObject _previewTower;                  // 미리보기 타워 오브젝트
 
     private void Update()
     {
@@ -12,24 +13,57 @@ public class TowerPlacer : MonoBehaviour
         if (Keyboard.current.tKey.wasPressedThisFrame)
         {
             _isPlacing = !_isPlacing;
-            Debug.Log(_isPlacing ? "배치 모드 ON" : "배치 모드 OFF");
+
+            if (_isPlacing)
+                ShowPreview();  // 배치 모드 ON → 미리보기 생성
+            else
+                HidePreview();  // 배치 모드 OFF → 미리보기 제거
         }
 
-        // 배치 모드일 때 마우스 클릭으로 타워 배치
-        if (_isPlacing && Mouse.current.leftButton.wasPressedThisFrame)
-            PlaceTower();
+        // 배치 모드일 때
+        if (_isPlacing)
+        {
+            MovePreview();  // 미리보기 마우스 따라 이동
+
+            // 클릭하면 타워 배치
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+                PlaceTower();
+        }
     }
 
-    private void PlaceTower()
+    private void ShowPreview()
     {
-        // 마우스 위치를 월드 좌표로 변환
+        // 반투명 미리보기 타워 생성
+        _previewTower = Instantiate(_towerPrefab);
+        SpriteRenderer sr = _previewTower.GetComponent<SpriteRenderer>();
+        sr.color = new Color(1f, 1f, 1f, 0.5f); // 반투명 처리
+
+        // 미리보기는 타워 기능 비활성화
+        _previewTower.GetComponent<Tower>().enabled = false;
+    }
+
+    private void HidePreview()
+    {
+        // 미리보기 타워 제거
+        if (_previewTower != null)
+            Destroy(_previewTower);
+    }
+
+    private void MovePreview()
+    {
+        if (_previewTower == null) return;
+
+        // 미리보기 타워를 마우스 위치로 이동
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(
             Mouse.current.position.ReadValue()
         );
         mousePos.z = 0f;
+        _previewTower.transform.position = mousePos;
+    }
 
-        // 해당 위치에 타워 생성
-        Instantiate(_towerPrefab, mousePos, Quaternion.identity);
-        Debug.Log($"타워 배치 : {mousePos}");
+    private void PlaceTower()
+    {
+        // 미리보기 위치에 실제 타워 배치
+        Instantiate(_towerPrefab, _previewTower.transform.position, Quaternion.identity);
     }
 }
