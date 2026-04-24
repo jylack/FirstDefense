@@ -4,7 +4,8 @@ public class Enemy : MonoBehaviour
 {          
     [SerializeField] private float _speed = 3f; // 이동 속도
     [SerializeField] private int _maxHp = 100; // 최대 체력
-    
+    [SerializeField] private int _goldReward = 10; // 처치 시 골드 보상
+
     private WaveManager _waveManager; // WaveManager 참조
     
     private int _currentHp; // 현재 체력
@@ -57,6 +58,7 @@ public class Enemy : MonoBehaviour
     // 적 사망 처리
     private void Die()
     {
+        GameManager.Instance.AddGold(_goldReward); // 골드 지급
         // WaveManager에게 적 사망 알림
         _waveManager.OnEnemyDied();
         Destroy(gameObject);

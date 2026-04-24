@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class TowerPlacer : MonoBehaviour
 {
     [SerializeField] private GameObject _towerPrefab;  // 배치할 타워 프리팹
+    [SerializeField] private int _towerCost = 50; // 타워 배치 비용
+
     private bool _isPlacing = false;                   // 현재 배치 모드인지
     private GameObject _previewTower;                  // 미리보기 타워 오브젝트
 
@@ -63,6 +65,8 @@ public class TowerPlacer : MonoBehaviour
 
     private void PlaceTower()
     {
+        // 골드 부족하면 배치 안됨
+        if (!GameManager.Instance.SpendGold(_towerCost)) return;
         // 미리보기 위치에 실제 타워 배치
         Instantiate(_towerPrefab, _previewTower.transform.position, Quaternion.identity);
     }

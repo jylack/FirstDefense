@@ -22,6 +22,7 @@ public class WaveManager : MonoBehaviour
         {
             _currentWave++;
             _aliveEnemyCount = _enemyCountPerWave;
+            GameManager.Instance.UpdateWave(_currentWave); // 이 줄 추가
             Debug.Log($"{_currentWave} 웨이브 시작");
 
             // 웨이브당 적 순서대로 생성
