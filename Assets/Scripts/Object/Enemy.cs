@@ -15,11 +15,15 @@ public class Enemy : MonoBehaviour
 
     // 외부에서 웨이포인트 배열 받아 초기화
     // Init 메서드에 WaveManager 추가
-    public void Init(Transform[] waypoints, WaveManager waveManager)
+    // 속도와 체력도 외부에서 받아오도록 수정
+    public void Init(Transform[] waypoints, WaveManager waveManager, float speed, int hp)
     {
         _waypoints = waypoints;
         _waveManager = waveManager;
+        _speed = speed;      // 맵데이터 속도 적용
+        _maxHp = hp;         // 맵데이터 체력 적용
         _currentHp = _maxHp;
+        _currentIndex = 0;
         transform.position = _waypoints[0].position;
     }
 
